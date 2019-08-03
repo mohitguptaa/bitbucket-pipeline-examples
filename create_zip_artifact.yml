@@ -1,0 +1,14 @@
+image: node:10.15.3
+
+pipelines:
+  default:
+    - step:
+        name: Zip
+        script:
+          - apt-get update && apt-get -qq install zip
+          - mkdir out
+          - zipfile="<zip file name>" ## change here ##
+          - dirs="<space list of all files & directories>" ## change here ##
+          - zip -r out/$zipfile.zip $dirs
+        artifacts:
+          - "out/<zip file name>.zip"

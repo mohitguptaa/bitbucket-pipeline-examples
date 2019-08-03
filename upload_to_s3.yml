@@ -1,0 +1,24 @@
+image: node:10.15.3
+
+pipelines:
+  default:
+    - step:
+        caches:
+          - node
+        script: # Modify the commands below to build your repository.
+          - pipe: atlassian/aws-s3-deploy:0.3.2
+            variables:
+              AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY ## Should be set as secured env variable
+              AWS_SECRET_ACCESS_KEY: $AWS_SECRET ## Should be set as secured env variable
+              AWS_DEFAULT_REGION: $AWS_REGION ## Should be set as secured env variable
+              S3_BUCKET: $AWS_S3_BUCKET_NAME ## Should be set as secured env variable
+              LOCAL_PATH: 'out'
+              # CONTENT_ENCODING: '<string>' # Optional.
+              # ACL: '<string>' # Optional.
+              # STORAGE_CLASS: '<string>' # Optional.
+              # CACHE_CONTROL: '<string>' # Optional.
+              # EXPIRES: '<timestamp>' # Optional.
+              # DELETE_FLAG: '<boolean>' # Optional.
+              # EXTRA_ARGS: '<string>' # Optional.
+              # DEBUG: '<boolean>' # Optional.
+
